@@ -29,11 +29,13 @@
     },
     {
       "lean": "lemma add_assoc (a b c : mynat) : (a + b) + c = a + (b + c) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction c with c' hi,\r\nrw add_zero (a + b),\r\nrw add_zero b,\r\nrefl,\r\n\r\nrw add_succ (a + b) c',\r\nrw add_succ b c',\r\nrw add_succ a (b + c'),\r\nrw hi,\r\nrefl,\r\n"
     },
     {
       "lean": "lemma succ_add (a b : mynat) : succ a + b = succ (a + b) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction b with b' hi,\r\nrw add_zero (succ a),\r\nrw add_zero a,\r\nrefl,\r\n\r\nrw add_succ (succ a) b',\r\nrw hi,\r\nrw add_succ a b',\r\nrefl,\r\n"
     },
     {
       "lean": "lemma add_comm (a b : mynat) : a + b = b + a :=\n",

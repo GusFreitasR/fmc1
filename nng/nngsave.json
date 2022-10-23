@@ -324,19 +324,23 @@
     },
     {
       "lean": "lemma add_left_eq_zero {{a b : mynat}} (H : a + b = 0) : b = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "cases b with b',\r\nrefl,\r\nrw add_succ at H,\r\nexfalso,\r\n\r\nhave h := succ_ne_zero (a + b'),\r\nhave f := h(H),\r\nexact f,\r\n"
     },
     {
       "lean": "lemma add_right_eq_zero {a b : mynat} : a + b = 0 → a = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw add_comm a b,\r\nintro h,\r\nhave h1:= add_left_eq_zero(h),\r\nexact h1,\r\n"
     },
     {
       "lean": "theorem add_one_eq_succ (d : mynat) : d + 1 = succ d :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw one_eq_succ_zero,\r\nrw add_succ d 0,\r\nrw add_zero d,\r\nrefl,"
     },
     {
       "lean": "lemma ne_succ_self (n : mynat) : n ≠ succ n :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction n with n' hi,\r\nexact zero_ne_succ 0,\r\n\r\nrw succ_eq_add_one,\r\nrw add_comm n' 1,\r\nrw <- add_succ 1 n',\r\nintro h,\r\nhave h1:= add_left_cancel 1 n' (succ n'),\r\nhave h2:= h1(h),\r\nhave f := hi(h2),\r\nexact f,\r\n"
     },
     {
       "lean": "theorem mul_pos (a b : mynat) : a ≠ 0 → b ≠ 0 → a * b ≠ 0 :=\n",

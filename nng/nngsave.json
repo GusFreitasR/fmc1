@@ -389,23 +389,28 @@
     },
     {
       "lean": "theorem le_antisymm (a b : mynat) (hab : a ≤ b) (hba : b ≤ a) : a = b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "cases hab with b' h,\r\ncases hba with a' h1,\r\nrw h1 at h,\r\nsymmetry at h,\r\nrw add_assoc b a' b' at h,\r\nhave h2 := eq_zero_of_add_right_eq_self h,\r\nhave h3 := add_right_eq_zero h2,\r\nrw h3 at h1,\r\nrw add_zero at h1,\r\nexact h1,\r\n"
     },
     {
       "lean": "lemma le_zero (a : mynat) (h : a ≤ 0) : a = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "cases h with b' h,\r\nsymmetry at h,\r\nhave h1 := add_right_eq_zero h,\r\nexact h1,"
     },
     {
       "lean": "lemma succ_le_succ (a b : mynat) (h : a ≤ b) : succ a ≤ succ b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "cases h with b' h,\r\nrw h,\r\nuse b',\r\nrw succ_add a b',\r\nrefl,\r\n"
     },
     {
       "lean": "theorem le_total (a b : mynat) : a ≤ b ∨ b ≤ a :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction b with b' hi generalizing a,\r\nright,\r\nexact zero_le a,\r\ncases a with a' hi,\r\nleft,\r\nexact zero_le (succ b'),\r\ncases hi a',\r\nleft,\r\napply succ_le_succ a' b',\r\nexact h,\r\nright,\r\napply succ_le_succ b' a',\r\nexact h,\r\n"
     },
     {
       "lean": "lemma le_succ_self (a : mynat) : a ≤ succ a :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "use 1,\r\nexact succ_eq_add_one a,\r\n"
     },
     {
       "lean": "theorem add_le_add_right {a b : mynat} : a ≤ b → ∀ t, (a + t) ≤ (b + t) :=\n",

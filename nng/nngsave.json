@@ -414,23 +414,28 @@
     },
     {
       "lean": "theorem add_le_add_right {a b : mynat} : a ≤ b → ∀ t, (a + t) ≤ (b + t) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro h,\r\nintro t,\r\ncases h with c h,\r\nuse c,\r\nrw h,\r\nrw add_right_comm a c t,\r\nrefl,\r\n"
     },
     {
       "lean": "theorem le_of_succ_le_succ (a b : mynat) : succ a ≤ succ b → a ≤ b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro h,\r\ncases h with c h,\r\nuse c,\r\nrw succ_add a c at h,\r\nhave h1 := succ_inj h,\r\nexact h1,"
     },
     {
       "lean": "theorem not_succ_le_self (a : mynat) : ¬ (succ a ≤ a) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro h,\r\ninduction a with a' hi,\r\nhave h1 := le_zero (succ 0) h,\r\napply succ_ne_zero 0,\r\nexact h1,\r\n\r\napply hi,\r\nhave h1 := le_of_succ_le_succ (succ a') a',\r\nexact h1(h),\r\n"
     },
     {
       "lean": "theorem add_le_add_left {a b : mynat} (h : a ≤ b) (t : mynat) :\n  t + a ≤ t + b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction t with t' hi,\r\nrw zero_add a,\r\nrw zero_add b,\r\nexact h,\r\n\r\nrw succ_add t' a,\r\nrw succ_add t' b,\r\napply succ_le_succ,\r\nexact hi,\r\n"
     },
     {
       "lean": "lemma lt_aux_one (a b : mynat) : a ≤ b ∧ ¬ (b ≤ a) → succ a ≤ b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro h,\r\ncases h with h1 h2,\r\ncases h1 with c h3,\r\ncases c with c' h4,\r\nexfalso,\r\nrw add_zero at h3,\r\napply h2,\r\nuse 0,\r\nrw add_zero b,\r\nsymmetry,\r\nexact h3,\r\nuse c',\r\nrw succ_add a c',\r\nrw h3,\r\nrw add_succ a c',\r\nrefl,\r\n"
     },
     {
       "lean": "lemma lt_aux_two (a b : mynat) : succ a ≤ b → a ≤ b ∧ ¬ (b ≤ a) :=\n",
